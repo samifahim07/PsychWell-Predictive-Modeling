@@ -1,0 +1,874 @@
+templetes/index.html<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MindScan — Mental Health Screening</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Tokens ──────────────────────────────────────────────────── */
+  :root {
+    --ink:        #1a2330;
+    --ink-soft:   #3d5166;
+    --ink-muted:  #7a90a4;
+    --surface:    #f0f4f8;
+    --card:       #ffffff;
+    --teal:       #2d7d8e;
+    --teal-light: #3d9aad;
+    --teal-dim:   #e6f3f6;
+    --amber:      #d97d2e;
+    --red:        #c0392b;
+    --green:      #2e8b57;
+    --green-dim:  #e6f4ec;
+    --radius-sm:  6px;
+    --radius:     14px;
+    --radius-lg:  24px;
+    --shadow:     0 2px 16px rgba(26,35,48,.08);
+    --shadow-lg:  0 8px 40px rgba(26,35,48,.13);
+    --serif:      'DM Serif Display', Georgia, serif;
+    --sans:       'DM Sans', system-ui, sans-serif;
+  }
+
+  /* ── Reset ───────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Header ──────────────────────────────────────────────────── */
+  header {
+    background: var(--ink);
+    color: #fff;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    letter-spacing: -.01em;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .logo-dot {
+    width: 10px; height: 10px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .header-tag {
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 55% at 20% 80%, rgba(45,125,142,.25) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 45% at 80% 20%, rgba(45,125,142,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.1;
+    max-width: 700px;
+    margin: 0 auto 1.2rem;
+    font-weight: 400;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal-light);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.65);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+  .hero-model-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 100px;
+    padding: .35rem 1rem;
+    font-size: .8rem;
+    color: rgba(255,255,255,.7);
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50%      { opacity: .4; }
+  }
+
+  /* ── Main layout ─────────────────────────────────────────────── */
+  .main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ── Section headings ────────────────────────────────────────── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+  .section-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Card ────────────────────────────────────────────────────── */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Form grid ───────────────────────────────────────────────── */
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+  .form-group label {
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    letter-spacing: .02em;
+  }
+  .form-group input,
+  .form-group select {
+    border: 1.5px solid #d8e2ea;
+    border-radius: var(--radius-sm);
+    padding: .55rem .85rem;
+    font-family: var(--sans);
+    font-size: .92rem;
+    color: var(--ink);
+    background: var(--surface);
+    transition: border-color .15s, box-shadow .15s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(45,125,142,.12);
+  }
+
+  /* ── Slider ──────────────────────────────────────────────────── */
+  .slider-wrap { display: flex; flex-direction: column; gap: .4rem; }
+  .slider-row  { display: flex; align-items: center; gap: .7rem; }
+  .slider-val  {
+    min-width: 36px;
+    text-align: center;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--teal);
+    background: var(--teal-dim);
+    border-radius: 4px;
+    padding: .15rem .3rem;
+  }
+  input[type=range] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 5px;
+    border-radius: 3px;
+    background: #d8e2ea;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 1px 4px rgba(45,125,142,.35);
+    cursor: pointer;
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: .72rem;
+    color: var(--ink-muted);
+  }
+
+  /* ── Symptoms grid ───────────────────────────────────────────── */
+  .symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .65rem;
+  }
+  .symptom-toggle {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: .6rem .9rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid #d8e2ea;
+    background: var(--surface);
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .symptom-toggle:hover { border-color: var(--teal); background: var(--teal-dim); }
+  .symptom-toggle input[type=checkbox] { display: none; }
+  .check-box {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    border: 1.5px solid #b0c4d4;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: background .15s, border-color .15s;
+  }
+  .symptom-toggle input:checked + .check-box {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+  .check-box svg { display: none; }
+  .symptom-toggle input:checked + .check-box svg { display: block; }
+  .symptom-label {
+    font-size: .83rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+    line-height: 1.3;
+  }
+  .symptom-toggle:has(input:checked) .symptom-label { color: var(--teal); }
+  .symptom-toggle:has(input:checked) { border-color: var(--teal); background: var(--teal-dim); }
+
+  /* ── Submit ──────────────────────────────────────────────────── */
+  .submit-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .btn-predict {
+    background: var(--teal);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: .85rem 2.8rem;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    box-shadow: 0 4px 20px rgba(45,125,142,.35);
+    transition: background .2s, transform .1s, box-shadow .2s;
+  }
+  .btn-predict:hover  { background: var(--teal-light); box-shadow: 0 6px 28px rgba(45,125,142,.45); }
+  .btn-predict:active { transform: scale(.97); }
+  .btn-predict:disabled { opacity: .6; cursor: not-allowed; }
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Result panel ────────────────────────────────────────────── */
+  #result { display: none; margin-top: 2rem; }
+
+  .result-card {
+    border-radius: var(--radius-lg);
+    padding: 2.2rem;
+    box-shadow: var(--shadow-lg);
+  }
+  .result-card.positive {
+    background: linear-gradient(135deg, #fff8f5 0%, #fff 100%);
+    border: 1.5px solid #f0c4b0;
+  }
+  .result-card.negative {
+    background: linear-gradient(135deg, var(--green-dim) 0%, #fff 100%);
+    border: 1.5px solid #b0d8c0;
+  }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  .result-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+  }
+  .result-icon.pos { background: #fde8dc; }
+  .result-icon.neg { background: #d6f0e2; }
+
+  .result-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .result-conf {
+    font-size: .85rem;
+    color: var(--ink-muted);
+    margin-top: .2rem;
+  }
+
+  /* ── Probability bars ────────────────────────────────────────── */
+  .prob-section { margin-bottom: 1.8rem; }
+  .prob-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: .4rem;
+  }
+  .prob-track {
+    height: 8px;
+    background: #e8edf2;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: .75rem;
+  }
+  .prob-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width .8s cubic-bezier(.4,0,.2,1);
+  }
+  .prob-fill.issue   { background: var(--amber); }
+  .prob-fill.no-issue { background: var(--green); }
+
+  /* ── Disclaimer ──────────────────────────────────────────────── */
+  .disclaimer {
+    background: #f7f9fb;
+    border-left: 3px solid var(--ink-muted);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: .9rem 1.1rem;
+    font-size: .8rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin-top: 1rem;
+  }
+
+  /* ── Error ───────────────────────────────────────────────────── */
+  .error-box {
+    background: #fff0f0;
+    border: 1.5px solid #f5c6c6;
+    border-radius: var(--radius);
+    padding: 1.2rem 1.5rem;
+    color: var(--red);
+    font-size: .9rem;
+    margin-top: 1.5rem;
+    display: none;
+  }
+
+  /* ── Divider ─────────────────────────────────────────────────── */
+  .divider { border: none; border-top: 1.5px solid #e4eaf0; margin: 2rem 0; }
+
+  /* ── Info strip ──────────────────────────────────────────────── */
+  .info-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .info-tile {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+  }
+  .info-tile-val {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .info-tile-label {
+    font-size: .78rem;
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────── */
+  @media(max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    .symptoms-grid { grid-template-columns: 1fr 1fr; }
+    .info-strip { grid-template-columns: 1fr 1fr; }
+    .hero { padding: 3.5rem 1.2rem 3rem; }
+    .card { padding: 1.4rem; }
+  }
+  @media(max-width: 400px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .symptoms-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────── -->
+<header>
+  <div class="logo">
+    <span class="logo-dot"></span>
+    MindScan
+  </div>
+  <span class="header-tag">Screening Tool</span>
+</header>
+
+<!-- ── Hero ────────────────────────────────────────────────── -->
+<section class="hero">
+  <p class="hero-eyebrow">AI-powered mental health screening</p>
+  <h1>How are you <em>really</em> doing?</h1>
+  <p class="hero-sub">Answer a few questions about your lifestyle and recent feelings. Our model will flag whether further support may help.</p>
+  <div class="hero-model-badge">
+    <span class="badge-dot"></span>
+    Random Forest · 91.4% accuracy
+  </div>
+</section>
+
+<!-- ── Main ─────────────────────────────────────────────────── -->
+<main class="main">
+
+  <!-- Info strip -->
+  <div class="info-strip">
+    <div class="info-tile">
+      <span class="info-tile-val">91.4%</span>
+      <span class="info-tile-label">Model accuracy</span>
+    </div>
+    <div class="info-tile">
+      <span class="info-tile-val">29</span>
+      <span class="info-tile-label">Screening factors</span>
+    </div>
+    <div class="info-tile">
+      <span class="info-tile-val">9</span>
+      <span class="info-tile-label">Models benchmarked</span>
+    </div>
+    <div class="info-tile">
+      <span class="info-tile-val">RF</span>
+      <span class="info-tile-label">Best model selected</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Demographics -->
+  <div class="section-head">
+    <span class="section-num">1</span>
+    <h2>About you</h2>
+  </div>
+  <div class="card">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" min="10" max="100" value="25" placeholder="e.g. 25">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Non-binary">Non-binary</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="education">Education</label>
+        <select id="education">
+          <option value="High School">High School</option>
+          <option value="Associate Degree">Associate Degree</option>
+          <option value="Bachelor's Degree" selected>Bachelor's Degree</option>
+          <option value="Master's Degree">Master's Degree</option>
+          <option value="PhD">PhD</option>
+          <option value="Middle School">Middle School</option>
+          <option value="No Formal Education">No Formal Education</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="employment">Employment status</label>
+        <select id="employment">
+          <option value="Employed">Employed</option>
+          <option value="Unemployed">Unemployed</option>
+          <option value="Student">Student</option>
+          <option value="Self-employed">Self-employed</option>
+          <option value="Freelancer">Freelancer</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="income">Income level</label>
+        <select id="income">
+          <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Lifestyle -->
+  <div class="section-head">
+    <span class="section-num">2</span>
+    <h2>Lifestyle & environment</h2>
+  </div>
+  <div class="card">
+    <div class="form-grid">
+
+      <!-- Work stress -->
+      <div class="form-group slider-wrap">
+        <label>Work stress level</label>
+        <div class="slider-row">
+          <input type="range" id="work_stress" min="1" max="5" value="3" oninput="updateSlider(this,'work_stress_val')">
+          <span class="slider-val" id="work_stress_val">3</span>
+        </div>
+        <div class="slider-labels"><span>Low</span><span>High</span></div>
+      </div>
+
+      <!-- Financial stress -->
+      <div class="form-group slider-wrap">
+        <label>Financial stress</label>
+        <div class="slider-row">
+          <input type="range" id="financial_stress" min="1" max="5" value="3" oninput="updateSlider(this,'fin_stress_val')">
+          <span class="slider-val" id="fin_stress_val">3</span>
+        </div>
+        <div class="slider-labels"><span>Low</span><span>High</span></div>
+      </div>
+
+      <!-- Sleep -->
+      <div class="form-group slider-wrap">
+        <label>Sleep hours / night</label>
+        <div class="slider-row">
+          <input type="range" id="sleep" min="2" max="12" step=".5" value="7" oninput="updateSlider(this,'sleep_val')">
+          <span class="slider-val" id="sleep_val">7</span>
+        </div>
+        <div class="slider-labels"><span>2h</span><span>12h</span></div>
+      </div>
+
+      <!-- Physical activity -->
+      <div class="form-group slider-wrap">
+        <label>Physical activity (hrs/week)</label>
+        <div class="slider-row">
+          <input type="range" id="physical" min="0" max="20" step="1" value="3" oninput="updateSlider(this,'physical_val')">
+          <span class="slider-val" id="physical_val">3</span>
+        </div>
+        <div class="slider-labels"><span>0h</span><span>20h</span></div>
+      </div>
+
+      <!-- Screen time -->
+      <div class="form-group slider-wrap">
+        <label>Screen time (hrs/day)</label>
+        <div class="slider-row">
+          <input type="range" id="screen" min="0" max="16" step=".5" value="4" oninput="updateSlider(this,'screen_val')">
+          <span class="slider-val" id="screen_val">4</span>
+        </div>
+        <div class="slider-labels"><span>0h</span><span>16h</span></div>
+      </div>
+
+      <!-- Social media -->
+      <div class="form-group slider-wrap">
+        <label>Social media (hrs/day)</label>
+        <div class="slider-row">
+          <input type="range" id="social_media" min="0" max="12" step=".5" value="2" oninput="updateSlider(this,'sm_val')">
+          <span class="slider-val" id="sm_val">2</span>
+        </div>
+        <div class="slider-labels"><span>0h</span><span>12h</span></div>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- Toggle flags -->
+    <div class="form-grid" style="margin-top:0">
+      <label class="symptom-toggle">
+        <input type="checkbox" id="loneliness">
+        <span class="check-box">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="symptom-label">Feeling lonely</span>
+      </label>
+      <label class="symptom-toggle">
+        <input type="checkbox" id="social_support" checked>
+        <span class="check-box">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="symptom-label">Social support available</span>
+      </label>
+      <label class="symptom-toggle">
+        <input type="checkbox" id="work_life_balance" checked>
+        <span class="check-box">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="symptom-label">Good work-life balance</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Section 3: Symptoms -->
+  <div class="section-head">
+    <span class="section-num">3</span>
+    <h2>Symptoms in the past two weeks</h2>
+  </div>
+  <div class="card">
+    <p style="font-size:.85rem;color:var(--ink-muted);margin-bottom:1.2rem;">Select any you have been experiencing regularly.</p>
+    <div class="symptoms-grid">
+
+      <label class="symptom-toggle"><input type="checkbox" id="sad"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Feeling sad or down</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="interest"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Loss of interest</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="sleep_trouble"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Sleep trouble</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="fatigue"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Fatigue / low energy</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="appetite"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Poor appetite or overeating</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="worthless"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Feeling worthless</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="concentration"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Concentration difficulty</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="anxious"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Anxious or nervous</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="panic"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Panic attacks</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="mood_swings"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Mood swings</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="irritability"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Irritability</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="obsessive"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Obsessive thoughts</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="compulsive"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Compulsive behaviour</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="self_harm"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Self-harm thoughts</span></label>
+
+      <label class="symptom-toggle"><input type="checkbox" id="suicidal"><span class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="symptom-label">Suicidal thoughts</span></label>
+
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-area">
+    <button class="btn-predict" id="submitBtn" onclick="submitForm()">
+      <span class="spinner" id="spinner"></span>
+      <span id="btn-text">Run screening</span>
+    </button>
+  </div>
+
+  <!-- Error -->
+  <div class="error-box" id="errorBox"></div>
+
+  <!-- Result -->
+  <div id="result">
+    <div class="result-card" id="resultCard">
+      <div class="result-header">
+        <div class="result-icon" id="resultIcon"></div>
+        <div>
+          <div class="result-title" id="resultTitle"></div>
+          <div class="result-conf" id="resultConf"></div>
+        </div>
+      </div>
+
+      <div class="prob-section">
+        <div class="prob-label">
+          <span>No issue detected</span>
+          <span id="pNoIssue">—</span>
+        </div>
+        <div class="prob-track"><div class="prob-fill no-issue" id="barNoIssue" style="width:0%"></div></div>
+
+        <div class="prob-label">
+          <span>Issue detected</span>
+          <span id="pIssue">—</span>
+        </div>
+        <div class="prob-track"><div class="prob-fill issue" id="barIssue" style="width:0%"></div></div>
+      </div>
+
+      <div class="disclaimer">
+        This tool provides a statistical screening signal, not a clinical diagnosis. The results do not replace professional assessment. If you are experiencing distress, please speak with a qualified mental health professional.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function updateSlider(el, valId) {
+    document.getElementById(valId).textContent = el.value;
+  }
+
+  function chk(id) {
+    return document.getElementById(id).checked ? 1 : 0;
+  }
+
+  async function submitForm() {
+    const btn     = document.getElementById('submitBtn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btn-text');
+    const errorBox = document.getElementById('errorBox');
+    const resultDiv = document.getElementById('result');
+
+    btn.disabled  = true;
+    spinner.style.display = 'block';
+    btnText.textContent = 'Analysing…';
+    errorBox.style.display = 'none';
+    resultDiv.style.display = 'none';
+
+    const payload = {
+      Age:                          parseFloat(document.getElementById('age').value),
+      Gender:                       document.getElementById('gender').value,
+      Education:                    document.getElementById('education').value,
+      Employment_Status:            document.getElementById('employment').value,
+      Income_Level:                 document.getElementById('income').value,
+      Work_Stress_Level:            parseInt(document.getElementById('work_stress').value),
+      Financial_Stress:             parseInt(document.getElementById('financial_stress').value),
+      Sleep_Hours_Night:            parseFloat(document.getElementById('sleep').value),
+      Physical_Activity_Hours_Week: parseFloat(document.getElementById('physical').value),
+      Screen_Time_Hours_Day:        parseFloat(document.getElementById('screen').value),
+      Social_Media_Hours_Day:       parseFloat(document.getElementById('social_media').value),
+      Loneliness:                   chk('loneliness'),
+      Social_Support:               chk('social_support'),
+      Work_Life_Balance:            chk('work_life_balance'),
+      Feeling_Sad_Down:             chk('sad'),
+      Loss_Of_Interest:             chk('interest'),
+      Sleep_Trouble:                chk('sleep_trouble'),
+      Fatigue:                      chk('fatigue'),
+      Poor_Appetite_Or_Overeating:  chk('appetite'),
+      Feeling_Worthless:            chk('worthless'),
+      Concentration_Difficulty:     chk('concentration'),
+      Anxious_Nervous:              chk('anxious'),
+      Panic_Attacks:                chk('panic'),
+      Mood_Swings:                  chk('mood_swings'),
+      Irritability:                 chk('irritability'),
+      Obsessive_Thoughts:           chk('obsessive'),
+      Compulsive_Behavior:          chk('compulsive'),
+      Self_Harm_Thoughts:           chk('self_harm'),
+      Suicidal_Thoughts:            chk('suicidal'),
+    };
+
+    try {
+      const res  = await fetch('/predict', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (data.error) throw new Error(data.error);
+
+      showResult(data);
+    } catch(e) {
+      errorBox.textContent = 'Error: ' + e.message;
+      errorBox.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      btnText.textContent = 'Run screening';
+    }
+  }
+
+  function showResult(data) {
+    const resultDiv  = document.getElementById('result');
+    const resultCard = document.getElementById('resultCard');
+    const icon       = document.getElementById('resultIcon');
+    const title      = document.getElementById('resultTitle');
+    const conf       = document.getElementById('resultConf');
+    const pIssue     = document.getElementById('pIssue');
+    const pNoIssue   = document.getElementById('pNoIssue');
+    const barIssue   = document.getElementById('barIssue');
+    const barNoIssue = document.getElementById('barNoIssue');
+
+    const hasIssue = data.prediction === 1;
+
+    resultCard.className = 'result-card ' + (hasIssue ? 'positive' : 'negative');
+    icon.className       = 'result-icon ' + (hasIssue ? 'pos' : 'neg');
+    icon.textContent     = hasIssue ? '⚠️' : '✅';
+    title.textContent    = data.label;
+    conf.textContent     = `Model confidence: ${data.confidence}%`;
+
+    pIssue.textContent   = data.probability_issue   + '%';
+    pNoIssue.textContent = data.probability_no_issue + '%';
+
+    // Animate bars
+    setTimeout(() => {
+      barIssue.style.width   = data.probability_issue   + '%';
+      barNoIssue.style.width = data.probability_no_issue + '%';
+    }, 60);
+
+    resultDiv.style.display = 'block';
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+</body>
+</html>
